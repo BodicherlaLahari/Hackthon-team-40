@@ -1,0 +1,66 @@
+/* styles.css */
+
+body {
+    background-image: url(rgm.webp); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #1E3A8A; /* Dark blue color */
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    color: #4B5563; /* Gray color */
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #D1D5DB; /* Light gray border */
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus {
+    border-color: #3B82F6; /* Blue border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+button {
+    width: 100%;
+    background-color: #3B82F6; /* Blue background */
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2563EB; /* Darker blue on hover */
+}

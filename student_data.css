@@ -1,0 +1,117 @@
+/* Reset some default styles */
+body, h1, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body styles */
+body {
+    background-image: url('rgm.webp'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* Clean and modern font */
+    color: #333;
+}
+
+/* Container styles */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
+    overflow-y: auto; /* Add scrollbar when content exceeds container height */
+    height: 80vh; /* Set container height to 80% of viewport height */
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02); /* Slight scaling effect on hover */
+}
+
+/* Heading styles */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #5cb85c; /* A fresh color for the heading */
+    text-transform: uppercase;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input and select styles */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Input focus effect */
+input:focus, select:focus, textarea:focus {
+    border-color: #5cb85c; /* Highlighted border on focus */
+    box-shadow: 0 0 5px rgba(92, 184, 92, 0.3); /* Light glow effect */
+    outline: none; /* Remove default outline */
+}
+
+/* Button styles */
+button {
+    padding: 12px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(92, 184, 92, 0.4); /* Soft shadow for button */
+}
+
+button:hover {
+    background-color: #4cae4c;
+    transform: translateY(-2px); /* Subtle lift effect on hover */
+}
+
+/* Make button look disabled if form is incomplete */
+button:disabled {
+    background-color: #dcdcdc;
+    cursor: not-allowed;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        height: 70vh; /* Adjust container height for smaller screens */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    button {
+        font-size: 14px;
+    }
+}

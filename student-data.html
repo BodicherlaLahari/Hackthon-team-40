@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+    <link rel="stylesheet" href="student_data.css"> <!-- Link to external CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Data</h1>
+        <form id="studentDataForm">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" placeholder="Name" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-calendar-alt"></i>
+                <select id="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-chart-line"></i>
+                <select id="semester" required>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+            </div>
+            <div class="input-group" id="scoresContainer">
+                <label for="scores"></label>
+                <input type="number" id="score1" placeholder="Score for Semester 1" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-exclamation-triangle"></i>
+                <input type="number" id="failures" placeholder="Failures in Examinations" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-file-alt"></i>
+                <input type="number" id="assignments" placeholder="Assignments" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-heartbeat"></i>
+                <textarea id="healthConcerns" placeholder="Health Concerns" rows="4"></textarea>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-money-bill-wave"></i>
+                <textarea id="financialChallenges" placeholder="Financial Challenges" rows="4"></textarea>
+            </div>
+            <button type="submit">
+                <i class="fas fa-arrow-right"></i> Next
+            </button>
+        </form>
+
+        <canvas id="dataChart" style="display:none;"></canvas>
+    </div>
+
+    <script>
+        const semesterSelect = document.getElementById('semester');
+        const scoresContainer = document.getElementById('scoresContainer');
+
+        // Function to update scores input based on selected semester
+        semesterSelect.addEventListener('change', function() {
+            const selectedSemester = parseInt(this.value);
+            scoresContainer.innerHTML = `<label for="scores">Scores</label>`;
+            for (let i = 1; i <= selectedSemester; i++) {
+                scoresContainer.innerHTML += `<input type="number" id="score${i}" placeholder="Score for Semester ${i}" required>`;
+            }
+        });
+
+        document.getElementById('studentDataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Collect data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+ const phone = document.getElementById('phone').value;
+            const year = document.getElementById('year').value;
+            const semester = document.getElementById('semester').value;
+            const failures = document.getElementById('failures').value;
+            const assignments = document.getElementById('assignments').value;
+            const healthConcerns = document.getElementById('healthConcerns').value;
+            const financialChallenges = document.getElementById('financialChallenges').value;
+
+            // Collect scores
+            const scores = [];
+            for (let i = 1; i <= semester; i++) {
+                scores.push(document.getElementById(`score${i}`).value);
+            }
+
+            // Prepare data for the chart
+            const chartData = {
+                labels: ['Semesters', 'Failures', 'Assignments'],
+                datasets: [{
+                    label: 'Student Performance',
+                    data: [semester, failures, assignments],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            // Display the chart
+            const ctx = document.getElementById('dataChart').getContext('2d');
+            const dataChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Show the chart
+            document.getElementById('dataChart').style.display = 'block';
+
+            // Store student data in localStorage
+            localStorage.setItem('studentData', JSON.stringify({ name, email, phone, year, semester, scores, failures, assignments, healthConcerns, financialChallenges }));
+            window.location.href = 'review.html'; // Navigate to the next page
+        });
+    </script>
+</body>
+</html>

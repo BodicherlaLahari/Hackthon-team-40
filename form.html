@@ -1,0 +1,36 @@
+<!-- registration.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Student Registration </h1>
+        <form id="registrationForm">
+            <div class="input-group">
+                <i class="fas fa-id-card"></i>
+                <input type="text" id="regNumber" placeholder="Registration Number as 21091A0574" required>
+            </div>
+            <button type="submit">
+                <i class="fas fa-arrow-right"></i> Next
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            //const regNumber = document.getElementById('regNumber').value;
+            const regNumber = '21091A0574';
+            localStorage.setItem('21091A0574', regNumber); // Store registration number
+            window.location.href = 'student-data.html'; // Navigate to the next page
+        });
+    </script>
+</body>
+</html>
